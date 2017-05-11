@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>段落文本文字自动滚动</title>
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" media="all"/>
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap-theme.min.css" media="all"/>
+    <link rel="stylesheet" type="text/css" href="../css/base.css" media="all"/>
+    <style type="text/css">
+        .roll{ height:165px; overflow:hidden; }
+        .list{ margin:0;}
+        .list li{}
+    </style>
+</head>
+<body>
+<div class="demo1">
+    <h3>将进酒</h3>
+    <div id="roll" data-rwidth="100" data-rheight="100" class="roll">
+        <ul id="ul" class="list" style="">
+            <li>君不见黄河之水天上来，奔流到海不复回？</li>
+            <li>君不见高堂明镜悲白发，朝如青丝暮成雪？</li>
+            <li>人生得意须尽欢，莫使金樽空对月。</li>
+            <li>天生我材必有用，千金散尽还复来。</li>
+            <li>烹羊宰牛且为乐，会须一饮三百杯。</li>
+            <li>岑夫子，丹丘生，将进酒，杯莫停。</li>
+            <li>与君歌一曲，请君为我倾耳听。</li>
+            <li>钟鼓馔玉不足贵，但愿长醉不复醒。</li>
+            <li>古来圣贤皆寂寞，唯有饮者留其名。</li>
+            <li>陈王昔时宴平乐，斗酒十千恣讙谑。</li>
+            <li>主人何为言少钱，径须沽取对君酌。</li>
+            <li>五花马，千金裘，</li>
+            <li>呼儿将出换美酒，与尔同销万古愁。</li>
+        </ul>
+    </div>
+</div>
+<script>
+    (function(){
+        var ul = document.getElementById('ul');
+        var li = ul.getElementsByTagName('li');
+        var len = li.length;
+
+        function auto(){
+            act(ul, 'marginTop', -20, function(){
+                ul.appendChild(ul.children[0]);
+                ul.style.marginTop = 0;
+                setTimeout(function(){
+                    auto();
+                }, 800);
+            });
+        }
+        auto();
+
+        function css(obj, attr){
+            if(obj.currentStyle){
+                return obj.currentStyle[attr];
+            } else {
+                return getComputedStyle(obj, null)[attr];
+            }
+        }
+        function act(obj, attr, target, fn){
+            clearInterval(obj.timer);
+            obj.timer = setInterval(function(){
+                var cur = parseInt(css(obj, attr));
+                var speed = (target - cur) / 8;
+                var stop = true;
+                speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+                if(target != cur){
+                    stop = false;
+                }
+                obj.style[attr] = speed + cur + 'px';
+                if(stop){
+                    clearInterval(obj.timer);
+                    obj.timer = null;
+                    fn && fn.call(obj);
+                }
+            }, 20);
+        }
+    }());
+</script>
+</body>
+</html>

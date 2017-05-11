@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			html,body,div,img {
+				margin: 0;
+				padding: 0;
+			}
+			img {
+				display: block;
+			}
+			.banner {
+				width: 760px;
+				height: 300px;
+				margin: 100px 0 0 200px;
+				overflow: hidden;
+				position: relative;
+			}
+			.box img {
+				display: none;
+			}
+			.boxcon img,.boxtext img {
+				position: absolute;
+				top: 0;
+				left: -760px;
+			}
+		</style>
+		<script src="../js/jquery.js" charset="utf-8"></script>
+		<script src="../js/tween.js" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function () {
+				var num=0;
+				var num1=0;
+				var num2=0;
+				var timer=null;
+				var timer2=null;
+				var timer3=null;
+				function autoPlay() {
+					num++;
+					if (num>=$(".box img").length) {
+						num=0;
+					}
+					$(".box img").eq(num).fadeIn(800).siblings().fadeOut(800);
+				}
+				timer=setInterval(autoPlay,2000);
+				$(".boxtext img").eq(num1).animate({
+					"left":"0"
+				}, 1900,"backOut",function () {
+					$(".boxtext img").css("left","-760px")
+				})
+				function autoMove() {
+					num1++;
+					if (num1>=$(".boxtext img").length) {
+						num1=0;
+					}
+					$(".boxtext img").eq(num1).animate({
+						"left":"0"
+					}, 1900,"backOut",function () {
+						$(".boxtext img").eq(num1).css("left","-760px")
+					})
+				}
+				timer2=setInterval(autoMove,2000);
+				$(".boxcon img").eq(num2).animate({
+					"left":"0"
+				},1900,function () {
+					$(".boxcon img").css("left","-760px")
+				})
+				function autoMove2() {
+					num2++;
+					if (num2>=$(".boxcon img").length) {
+						num2=0;
+					}
+					$(".boxcon img").eq(num2).animate({
+						"left":"0"
+					},1900,function () {
+						$(".boxcon img").eq(num2).css("left","-760px")
+					})
+				}
+				timer3=setInterval(autoMove2,2000)
+			})
+		</script>
+	</head>
+	<body>
+		<div class="banner">
+			<div class="box">
+				<img src="../img/bg1.jpg" alt="" style="display:block" />
+				<img src="../img/bg2.jpg" alt="" />
+				<img src="../img/bg3.jpg" alt="" />
+				<img src="../img/bg4.jpg" alt="" />
+				<img src="../img/bg5.jpg" alt="" />
+			</div>
+			<div class="boxcon">
+				<img src="../img/con1.png" alt="" />
+				<img src="../img/con2.png" alt="" />
+				<img src="../img/con3.png" alt="" />
+				<img src="../img/con4.png" alt="" />
+				<img src="../img/con5.png" alt="" />
+			</div>
+			<div class="boxtext">
+				<img src="../img/text1.png" alt="" />
+				<img src="../img/text2.png" alt="" />
+				<img src="../img/text3.png" alt="" />
+				<img src="../img/text4.png" alt="" />
+				<img src="../img/text5.png" alt="" />
+			</div>
+		</div>
+	</body>
+</html>

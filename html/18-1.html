@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			html,body,div,ul,li,img {
+				margin: 0;
+				padding: 0;
+			}
+			.box {
+				margin: 100px 0 0 300px;
+			}
+			ul,li {
+				list-style-type: none;
+			}
+			ul {
+				width: 600px;
+				height: 300px;
+			}
+			li {
+				width: 125px;
+				height: 75px;
+				float: left;
+				margin: 10px;
+				opacity: 0.5;
+				background-color: #f00;
+			}
+		</style>
+		<script src="../js/mytools.js" charset="utf-8"></script>
+		<script type="text/javascript">
+			window.onload=function () {
+				var oBox=$(".box");
+				var aLi=$("li");
+				for(var i=0;i<aLi.length;i++){
+					aLi[i].style.left=aLi[i].offsetLeft+"px";
+					aLi[i].style.top=aLi[i].offsetTop+"px";
+				}
+				for(var i=0;i<aLi.length;i++){
+					aLi[i].style.position="absolute";
+					aLi[i].style.margin="0";
+				}
+				for(var i=0;i<aLi.length;i++){
+					aLi[i].L=parseInt( getStyle(aLi[i],"left") );
+					aLi[i].T=parseInt( getStyle(aLi[i],"top") );
+					aLi[i].W=parseInt( getStyle(aLi[i],"width") );
+					aLi[i].H=parseInt( getStyle(aLi[i],"height") );
+					aLi[i].onmouseover=function(){
+						this.style.zIndex=2;
+						startMove(this,{
+							width:250,
+							height:150,
+							opacity:100,
+							left:this.L-50,
+							top:this.T-50
+						},8)
+					}
+					aLi[i].onmouseout=function(){
+						this.style.zIndex=1;
+						startMove(this,{
+							width:this.W,
+							height:this.H,
+							opacity:50,
+							left:this.L,
+							top:this.T
+						},8)
+					}
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div class="box">
+			<ul>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+	</body>
+</html>

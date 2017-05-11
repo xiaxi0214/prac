@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+				font-family: "微软雅黑";
+			}
+			#list {
+				float: left;
+				margin: 100px 0 0 100px;
+				border: 1px solid #f00;
+			}
+			#list ul {
+				width: 400px;
+			}
+			#list ul li {
+				height: 30px;
+				list-style-type: none;
+				line-height: 30px;
+				font-size: 12px;
+				padding-left: 10px;
+			}
+			#btn {
+				float: left;
+				clear: left;
+				margin: 20px 0 0 140px;
+			}
+			#btn input {
+				width: 60px;
+				height: 30px;
+				border-radius: 5px;
+				color: #333;
+				font-size: 12px;
+				margin-left: 5px;
+			}
+		</style>
+		<script type="text/javascript">
+			window.onload=function () {
+				var oList=document.getElementById('list');
+				var oLi=oList.getElementsByTagName('li');
+				var oBtn=document.getElementById('btn');
+				var oChe=oList.getElementsByTagName('input');
+				var oBtn1=document.getElementById('btn1');
+				var oBtn2=document.getElementById('btn2');
+				var oBtn3=document.getElementById('btn3');
+				for (var i=0;i<oLi.length;i++) {
+					oChe[i].index=i;
+					if (i%2==0) {
+						oLi[i].style.backgroundColor="#0f0";
+						oLi[i].onmouseout=function () {
+							this.style.backgroundColor="#0f0"
+						}
+					}
+					else {
+						oLi[i].style.backgroundColor="#ff0";
+						oLi[i].onmouseout=function () {
+							this.style.backgroundColor="#ff0"
+						}
+					}
+					oLi[i].index=i;
+					oLi[i].onmouseover=function () {
+						this.style.backgroundColor="#f00";
+					}
+					oLi[i].onmouseout=function(){
+						if(oChe[this.index].checked){
+							this.style.background="#f00";
+						}else{
+							if (this.index%2==0){
+								this.style.background="#0f0";
+							}else{
+								this.style.background="#ff0";
+							}
+						}
+					}
+				}
+				oBtn1.onclick=function () {
+					for(var i=0;i<oChe.length;i++) {
+						oChe[i].checked=true;
+						oLi[i].style.backgroundColor="#f00";
+					}
+				}
+				oBtn2.onclick=function () {
+					for(var i=0;i<oChe.length;i++) {
+						oChe[i].checked=false;
+						if (i%2==0) {
+							oLi[i].style.backgroundColor="#0f0";
+						}
+						else {
+							oLi[i].style.backgroundColor="#ff0";
+						}
+					}
+				}
+				oBtn3.onclick=function () {
+					for(var i=0;i<oChe.length;i++) {
+						oChe[i].checked=!oChe[i].checked;
+						if (oChe[i].checked==true) {
+							oLi[i].style.backgroundColor="#f00";
+						}
+						else {
+							if (i%2==0) {
+								oLi[i].style.backgroundColor="#0f0";
+							}
+							else {
+								oLi[i].style.backgroundColor="#ff0";
+							}
+						}
+					}
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div id="list">
+			<ul>
+				<li><input type="checkbox" name="name" value="">好日子</li>
+				<li><input type="checkbox" name="name" value="">牡丹之歌</li>
+				<li><input type="checkbox" name="name" value="">爱我中华</li>
+				<li><input type="checkbox" name="name" value="">茉莉花</li>
+				<li><input type="checkbox" name="name" value="">渔舟唱晚</li>
+				<li><input type="checkbox" name="name" value="">走进新世纪</li>
+				<li><input type="checkbox" name="name" value="">辣妹子</li>
+				<li><input type="checkbox" name="name" value="">浏阳河</li>
+				<li><input type="checkbox" name="name" value="">东方姑娘</li>
+				<li><input type="checkbox" name="name" value="">十八弯水路到我家</li>
+				<li><input type="checkbox" name="name" value="">龙船调</li>
+				<li><input type="checkbox" name="name" value="">小背篓</li>
+
+			</ul>
+		</div>
+		<div id="btn">
+			<input type="button" name="name" value="全选" id="btn1">
+			<input type="button" name="name" value="清空" id="btn2">
+			<input type="button" name="name" value="反选" id="btn3">
+		</div>
+	</body>
+</html>
