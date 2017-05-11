@@ -1,0 +1,118 @@
+  <!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>前端展示</title>
+<link rel="stylesheet" href="css/base.css" />
+		<link rel="stylesheet" href="css/main.css" />
+	</head>
+	<body>
+		<div class="wrap shadow">
+			<ol id="ol" class="list">
+
+			</ol>
+		</div>
+		<script type="text/javascript">
+			var str="";
+			var data=[
+				[
+					{title:'表单常用代码'},
+					{url:'html/1.html',title:'去除字符串左右的空格'},
+					{ url : 'html/2.html', title : '验证用户是否输入' },
+				    { url : 'html/3.html', title : '禁止用户输入' },
+				    { url : 'html/4.html', title : '关闭用户中文输入法' },
+				    { url : 'html/5.html', title : '禁止用户复制和粘贴' },
+				    { url : 'html/6.html', title : '限制只能输入数字' },
+				    { url : 'html/7.html', title : '限制字符串长度' },
+				    { url : 'html/8.html', title : '仿微博提示可输入剩余字数' },
+				    { url : 'html/9.html', title : '换行文本自动滚动' },
+				    { url : 'html/10.html', title : 'Ctrl + Enter提交表单' },
+				    { url : 'html/11.html', title : '文本内容进行关键字过滤' },
+				    { url : 'html/12.html', title : '全选反选少选复选框' },
+			      	{ url : 'html/13.html', title : '动态操作下拉选项' },
+			   		{ url : 'html/14.html', title : '级联菜单' },
+				  	{ url : 'html/15.html', title : '可添加的下拉选项' }
+				],
+				[
+			   		{ title : '常用图片相关代码'},
+			   		{ url : 'html/16.html', title : '可添加的下拉选项' },
+			   		{ url : 'html/17.html', title : '图片放大镜效果' },
+			   		{ url : 'html/18.html', title : '点击图片逐渐放大' },
+			   		{ url : 'html/18-1.html', title : '鼠标划过图片变大' }
+		   		],
+                [
+                    { title : '内容展示常用代码'},
+                    { url : 'html/19.html', title : '单元行上鼠标悬停提示' },
+                    { url : 'html/21.html', title : '隔行换色鼠标经过换色' },
+                    { url : 'html/22.html', title : '添加或删除表格行' },
+                    { url : 'html/23.html', title : '可拖动的弹出层' },
+                    { url : 'html/24.html', title : '选项卡轮播' },
+                    { url : 'html/25.html', title : '模拟滚动条' },
+                    { url : 'html/26.html', title : '进度条' },
+                    { url : 'html/27.html', title : '拖动滑块验证' }
+                ],
+                [
+                    { title : '常用图片轮换'},
+                    { url : 'html/28.html', title : '百度爱玩 - 图片轮换' },
+                    { url : 'html/30.html', title : '百度爱玩 - 榜单tab切换' },
+                    { url : 'html/31.html', title : 'css3弹出层' },
+                    { url : 'html/32.html', title : '米4-活动页面' },
+                    { url : 'html/33.html', title : '百度爱玩 - 图片轮换' },
+                    { url : 'html/34.html', title : '百度微购－中秋送好礼' },
+                    { url : 'html/35.html', title : '商品分类' },
+                    { url : 'html/37.html', title : '经典图片轮换－单个滚动' },
+                    { url : 'html/38.html', title : '经典图片轮换－整个翻页' }
+                ],
+                [
+                    { title : '时间日期效果'},
+                    { url : 'html/39.html', title : '全日历' },
+                    { url : 'html/40.html', title : 'canvas实现小时钟' }
+                ],
+                [
+                    { title : '其它练习'},
+                    { url : 'html/41.html', title : '乘法口诀输出' },
+                    { url : 'html/42.html', title : '图片运动' },
+                    { url : 'html/45/index.html', title : '响应式练习' }
+                ]
+			];
+            for(var i = 0; i < data.length; i++){
+               var items = data[i];
+               var sub = '';
+               for(var j=0; j<items.length; j++){
+                   var son = items[j];
+                   if(j == 0){
+                       sub += '<li><h1><a href="javascript:;" title="' + son.title + '">' + son.title + '</a></h1><dl class="sub-dl">';
+                   } else {
+                       sub += '<dd><a href="' + son.url + '" target="_blank" title="' + son.title + '">' + son.title + '</a></dd>';
+                   }
+                   if(j == items.length - 1){
+                       sub += '</dl></li>';
+                   }
+               }
+               str += sub;
+           }
+           var ol=document.getElementById('ol');
+           ol.innerHTML = str;
+           var h1=ol.getElementsByTagName('h1');
+           var dl=ol.getElementsByTagName('dl');
+           var tmp=-1;
+           var open=false;
+           for (var i = 0; i < h1.length; i++) {
+               h1[i].index=i;
+               h1[i].onclick=function () {
+                   for (var i = 0; i < h1.length; i++) {
+                       dl[i].style.display="none";
+                   }
+                   if (tmp==this.index&&open) {
+                       dl[this.index].style.display="none";
+                       open=false;
+                   }else {
+                       dl[this.index].style.display="block";
+                       open=true;
+                   }
+                   tmp=this.index;
+               }
+           }
+		</script>
+	</body>
+</html>
